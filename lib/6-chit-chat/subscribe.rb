@@ -15,7 +15,7 @@ ARGV.each do |username|
   queue.bind(exchange, routing_key: username)
 end
 
-puts " [*] Waiting for gossip. To exit press CTRL+C"
+puts " [*] Waiting for gossip from #{ARGV}. To exit press CTRL+C"
 
 begin
   queue.subscribe(block: true) do |delivery_info, properties, body|
