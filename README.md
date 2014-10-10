@@ -6,3 +6,8 @@ started tutorials](http://www.rabbitmq.com/getstarted.html).
 More information can be found in this [post](http://www.mokhan.ca/tools/2014/10/10/rabbitmq.html).
 
 1. [Hello World](lib/1-hello/)
+2. [Workers](lib/2-workers/)
+3. [Pub/Sub](lib/3-pubsub/)
+4. [Routing](lib/4-routing/)
+5. [Topic Exchange](lib/5-topic-exchange/)
+6. [Chit Chat](lib/6-chit-chat/)
