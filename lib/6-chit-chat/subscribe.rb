@@ -3,17 +3,14 @@
 
 require "bunny"
 
-if ARGV.empty?
-  ARGV.push('#')
-end
-
-connection = Bunny.new
+connection = Bunny.new(host: ENV.fetch('RABBIT_HOST', 'localhost'))
 connection.start
 
 channel = connection.create_channel
 exchange = channel.topic("chitchat")
 queue = channel.queue("", exclusive: true)
 
+ARGV.push('#') if ARGV.empty?
 ARGV.each do |username|
   queue.bind(exchange, routing_key: username)
 end

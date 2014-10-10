@@ -3,7 +3,7 @@
 
 require "bunny"
 
-connection = Bunny.new
+connection = Bunny.new(host: ENV.fetch('RABBIT_HOST', 'localhost'))
 connection.start
 
 channel = connection.create_channel
