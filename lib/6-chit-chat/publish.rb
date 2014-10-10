@@ -9,9 +9,15 @@ connection.start
 channel = connection.create_channel
 exchange = channel.topic("chitchat")
 username = `'whoami'`.chomp!
-message = ARGV.empty? ? "Hi!" : ARGV.join(" ")
 
-exchange.publish(message, routing_key: username)
-puts " [x] Sent #{username}:#{message}"
+begin
+  print "> "
+  while message = gets do
+    exchange.publish(message, routing_key: username)
+    puts " [x] Sent #{username}:#{message}"
+    print "> "
+  end
+rescue
+  connection.close
+end
 
-connection.close
