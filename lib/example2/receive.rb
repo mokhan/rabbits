@@ -10,7 +10,7 @@ channel = connection.create_channel
 queue = channel.queue("hello")
 
 puts " [*] Waiting for messages in #{queue.name}. To exit press CTRL+C"
-queue.subscribe(ack: true, block: true) do |delivery_info, properties, body|
+queue.subscribe(manual_ack: true, block: true) do |delivery_info, properties, body|
   puts " [x] Received #{body}"
   sleep body.count(".").to_i
   puts " [x] Done"
