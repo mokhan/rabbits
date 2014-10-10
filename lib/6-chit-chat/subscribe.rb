@@ -6,9 +6,10 @@ require "bunny"
 connection = Bunny.new(host: ENV.fetch('RABBIT_HOST', 'localhost'))
 connection.start
 
+me = `whoami`.chomp!
 channel = connection.create_channel
 exchange = channel.topic("chitchat")
-queue = channel.queue("", exclusive: true)
+queue = channel.queue(me, exclusive: true)
 
 ARGV.push('#') if ARGV.empty?
 ARGV.each do |username|
